@@ -1,0 +1,16 @@
+<h3>See the details of <%= @restaurant.name%>!</h3>
+
+<%= @restaurant.category %>
+<%= image_tag "https://source.unsplash.com/random/?restaurant", class:"img-thumbnail w-25 h-25" %>
+<%= @restaurant.address %>
+<%= @restaurant.phone_number %>
+<%= @restaurant.average_rating %>
+<% @restaurant.reviews.each do |review| %>
+  <%= review.content %>
+  <%= review.rating %>
+  <%= link_to "Delete", review_path(review), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+<% end %>
+
+<%= link_to "add a review", new_restaurant_review_path(@restaurant) %>
+
+<%= link_to "Back to list", restaurants_path %>
